@@ -18,14 +18,14 @@ const PostDetails = ({ post, comments }) => {
         <div className='flex flex-col items-center'>
             <PostCard className='w-[95%] md:w-1/2 my-4'>
                 <div>
-                    <PostImage src={post.image} />
-                    <PostTitle title={post?.title} />
-                    <PostBody postBody={post?.body} />
+                    <PostCard.Image src={post.image} alt={post.title} />
+                    <PostCard.Title title={post.title} />
+                    <PostCard.Body postBody={post?.body} />
                     <button className='inline-block px-6 py-2 text-black bg-white rounded-md border border-black mt-4' onClick={() => setShowComments(!showComments)}>Comment</button>
                 </div>
             </PostCard>
 
-            {showComments && <PostComments comments={comments} />}
+            {showComments && <PostCard.Comments comments={comments} />}
 
             <Navigate href='/'
                 className="inline-block px-6 py-2 text-black bg-white rounded-md hover:bg-black hover:text-white border border-black hover:border-600 mt-4"

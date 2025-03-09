@@ -1,6 +1,7 @@
 import NoPostFound  from '../components/NoPostFound';
 import PostList from '@/components/PostList';
 import PropTypes from 'prop-types';
+import { ApiClient } from './api/ApiClient';
 
 const BlogDashboard = ({ posts }) => {  
   return (
@@ -16,17 +17,15 @@ const BlogDashboard = ({ posts }) => {
 };
 
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/posts`);
-  
-  if (!res.ok) {
+  const res = await ApiClient.get('/posts');
+
+  if (res.statusText !== 'OK') {
     return { notFound: true };  
   }
 
-  const posts = await res.json();
-
   return {
     props: {
-      posts, 
+      posts:res.data, 
     },
   };
 }

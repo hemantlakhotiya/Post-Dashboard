@@ -11,8 +11,8 @@ const PostList = ({ post }) => {
 
       <PostCard>
         <div className="max-w-md rounded-md overflow-hidden bg-white my-0 mx-auto">
-          <PostImage src={post.image} />
-          <PostTitle title={post.title} />
+          <PostCard.Image src={post.image} alt={post.title} />
+          <PostCard.Title title={post.title} />
         </div>
       </PostCard>
     </Link>

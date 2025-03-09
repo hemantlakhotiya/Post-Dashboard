@@ -2,6 +2,7 @@
 
 import PostDetails from '@/components/PostDetails';
 import PropTypes from 'prop-types';
+import { ApiClient } from '../api/ApiClient';
 
 
 const PostDetail = ({ postDetails, comments }) => {
@@ -13,8 +14,7 @@ const PostDetail = ({ postDetails, comments }) => {
 export async function getServerSideProps(context) {
   const { id } = context.params
 
-  const postRes = await fetch(`http://localhost:3000/api/posts/${id}`);
-  const {postDetails, comments} = await postRes.json();
+  const {data: { postDetails, comments }} = await ApiClient.get(`/posts/${id}`);
 
   return {
     props: { 
